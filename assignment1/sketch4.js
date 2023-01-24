@@ -6,7 +6,6 @@ function setup() {
   function draw() {
     background(0, 0, 125);
   
-  
     strokeWeight(5);
     stroke(255);
     fill(0, 150, 50);
