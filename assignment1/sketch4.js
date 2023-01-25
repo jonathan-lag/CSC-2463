@@ -20,7 +20,9 @@ function setup() {
     pop();
   }
   
-  
+  // Star function found on p5js.org "Examples" page under "Form"
+  // https://p5js.org/examples/form-star.html
+
   function star(x, y, radius1, radius2, npoints) {
     let angle = TWO_PI / npoints;
     let halfAngle = angle / 2.0;
