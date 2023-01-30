@@ -6,4 +6,5 @@ https://jonathan-lag.github.io/CSC-2463/sketch2.html
 https://jonathan-lag.github.io/CSC-2463/sketch3.html  
 https://jonathan-lag.github.io/CSC-2463/sketch4.html  
 
-All assignment 1 sketches can be found in the "assignment1" folder
+To see the Githube page for Assignment 2, use the following link:  
+https://jonathan-lag.github.io/CSC-2463/paint.html  
