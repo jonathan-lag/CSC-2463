@@ -48,7 +48,7 @@ function showButton(col, x, y) {
   
     if (mouseIsPressed) {
       //noStroke();
-      if (mouseX < 45 && mouseY < 340) {
+      if (mouseX < 45 && mouseY < 373) {
         fill(245);   
       } else {
         push();
