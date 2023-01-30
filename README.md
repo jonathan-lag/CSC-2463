@@ -7,4 +7,4 @@ https://jonathan-lag.github.io/CSC-2463/sketch3.html
 https://jonathan-lag.github.io/CSC-2463/sketch4.html  
 
 To see the Githube page for Assignment 2, use the following link:  
-https://jonathan-lag.github.io/CSC-2463/paint.html  
+https://jonathan-lag.github.io/CSC-2463/paint.html
