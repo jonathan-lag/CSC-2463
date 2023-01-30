@@ -2,8 +2,9 @@ function showButton(col, x, y) {
     noStroke();
     fill(col);
     square(x, y, 30);
-    if (dist (x, y, mouseX, mouseY) < 31 && mouseIsPressed) {
+    if (dist (x, y, mouseX, mouseY) < 30 && mouseIsPressed) {
       selectedColor = col;
+      
     }
   }
   
@@ -14,7 +15,7 @@ function showButton(col, x, y) {
     
   }
   
-  var colors = ['red', 'orange', 'yellow', 'lime', 'aqua', 'blue', 'magenta', 'saddlebrown', 'white', 'black'];
+  var colors = ['red', 'orange', 'yellow', 'lime', 'aqua', 'blue', 'magenta', 'tan', 'saddlebrown', 'white', 'black'];
   var selectedColor = 'red';
   
   function draw() {
