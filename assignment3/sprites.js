@@ -7,6 +7,7 @@ let walkingAnimation2;
 function preload() {
     spriteSheet = loadImage("assets/SpelunkyGuy.png")
     spriteSheet2 = loadImage("assets/Bowser.png")
+    
 }
 
 function setup() {
@@ -14,7 +15,9 @@ function setup() {
     imageMode(CENTER);
 
     walkingAnimation = new WalkingAnimation(spriteSheet, 80, 80, 200, 200, 9, 0, 0);
-    walkingAnimation2 = new WalkingAnimation(spriteSheet2, 84, 75, 100, 300, 16, 0, 2);
+    walkingAnimation3 = new WalkingAnimation(spriteSheet, 80, 80, 400, 300, 9, 0, 0);
+    walkingAnimation2 = new WalkingAnimation(spriteSheet2, 84, 75, 100, 200, 16, 0, 2);
+    walkingAnimation4 = new WalkingAnimation(spriteSheet2, 84, 75, 300, 300, 16, 0, 2);
 }
 
 function draw() {
@@ -22,16 +25,22 @@ function draw() {
     
     walkingAnimation.draw();
     walkingAnimation2.draw();
+    walkingAnimation3.draw();
+    walkingAnimation4.draw();
 }
 
 function keyPressed() {
     walkingAnimation.keyPressed(RIGHT_ARROW, LEFT_ARROW);
     walkingAnimation2.keyPressed(RIGHT_ARROW, LEFT_ARROW);
+    walkingAnimation3.keyPressed(LEFT_ARROW, RIGHT_ARROW);
+    walkingAnimation4.keyPressed(LEFT_ARROW, RIGHT_ARROW);
 }
 
 function keyReleased() {
     walkingAnimation.keyReleased(RIGHT_ARROW, LEFT_ARROW);
     walkingAnimation2.keyReleased(RIGHT_ARROW, LEFT_ARROW);
+    walkingAnimation3.keyReleased(LEFT_ARROW, RIGHT_ARROW);
+    walkingAnimation4.keyReleased(LEFT_ARROW, RIGHT_ARROW);
 }
 
 class WalkingAnimation {
@@ -66,7 +75,7 @@ class WalkingAnimation {
         image(this.spritesheet, 0, 0, this.sw, this.sh, this.u*this.sw, this.v*this.sh, this.sw, this.sh);
         pop();
 
-        if (frameCount % 6 == 0) {
+        if (frameCount % 4 == 0) {
             this.currentFrame++; 
         }  
 
