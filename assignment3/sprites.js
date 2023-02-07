@@ -14,10 +14,13 @@ function setup() {
     createCanvas(600, 600);
     imageMode(CENTER);
 
-    walkingAnimation = new WalkingAnimation(spriteSheet, 80, 80, 200, 200, 9, 0, 0);
+    // The Spelunky Sprites
+    walkingAnimation = new WalkingAnimation(spriteSheet, 80, 80, 250, 200, 9, 0, 0);
     walkingAnimation3 = new WalkingAnimation(spriteSheet, 80, 80, 400, 300, 9, 0, 0);
-    walkingAnimation2 = new WalkingAnimation(spriteSheet2, 84, 75, 100, 200, 16, 0, 2);
-    walkingAnimation4 = new WalkingAnimation(spriteSheet2, 84, 75, 300, 300, 16, 0, 2);
+
+    // The Bowser sprites
+    walkingAnimation2 = new WalkingAnimation(spriteSheet2, 84, 75, 150, 150, 16, 0, 2);
+    walkingAnimation4 = new WalkingAnimation(spriteSheet2, 84, 75, 250, 340, 16, 0, 2);
 }
 
 function draw() {
