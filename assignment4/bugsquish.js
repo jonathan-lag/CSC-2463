@@ -1,7 +1,6 @@
 let spriteSheet;
 
 let walkingAnimation;
-let walkingAnimation2;
 
 let spriteSheetFilenames = ["orangebug.png", "darkorangebug.png", "redbug.png"];
 let spriteSheets = [];
@@ -13,12 +12,14 @@ const GameState = {
   GameOver: "GameOver"
 };
 
-let game = { score: 0, maxScore: 0, maxTime: 30, elapsedTime: 0, totalSprites: 15, state: GameState.Start, targetSprite: 2 };
+let game = { score: 0, maxScore: 0, maxTime: 10, elapsedTime: 0, totalSprites: 15, state: GameState.Start, targetSprite: 2 };
 
 function preload() {
   for(let i=0; i < spriteSheetFilenames.length; i++) {
     spriteSheets[i] = loadImage("assets/" + spriteSheetFilenames[i]);
   }
+
+  dead = loadImage("assets/deadbug.png");
 }
 
 function setup() {
@@ -32,7 +33,7 @@ function setup() {
 function reset() {
   game.elapsedTime = 0;
   game.score = 0;
-  game.totalSprites = random(10,30);
+  game.totalSprites = random(20,30);
 
   animations = [];
   for(let i=0; i < game.totalSprites; i++) {
@@ -65,10 +66,12 @@ function draw() {
       fill(255);
       textSize(40);
       textAlign(CENTER);
-      text("Game Over!",200,200);
+      text("Game Over!",200,150);
       textSize(35);
-      text("Score: " + game.score,200,270);
-      text("Max Score: " + game.maxScore,200,320);
+      text("Score: " + game.score,200,220);
+      text("Max Score: " + game.maxScore,200,270);
+      textSize(25);
+      text("Press Any Key to Play Again", 200, 330);
       break;
     case GameState.Start:
       background(0);
@@ -77,7 +80,7 @@ function draw() {
       textAlign(CENTER);
       text("Bug Invasion!",200,200);
       textSize(20);
-      text("Squish Them ALL", 200, 240)
+      text("Squish Them ALL", 200, 245)
       textSize(30);
       text("Press Any Key to Start",200,300);
       break;
@@ -104,11 +107,19 @@ function mousePressed() {
         let contains = animations[i].contains(mouseX,mouseY);
         if (contains) {
           if (animations[i].moving != 0) {
+            //animations[i].remove();
+            //animations[i] = null;
             animations[i].stop();
-            if (animations[i].spritesheet === spriteSheets[game.targetSprite])
-              game.score += 1;
-            else
-              game.score += 1;
+            if (animations[i].stop() = true) {
+                animations[i].remove();
+            }
+            
+            game.score += 1;
+            //animations[i].changeAnimation("deadbug");
+            //if (animations[i].spritesheet === spriteSheets[game.targetSprite])
+            //  game.score += 1;
+            //else
+            //  game.score += 1;
           }
           else {
             if (animations[i].xDirection === 1)
