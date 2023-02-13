@@ -1,6 +1,7 @@
 let spriteSheet;
 
 let walkingAnimation;
+let speed = 1;
 
 let spriteSheetFilenames = ["orangebug.png", "darkorangebug.png", "redbug.png", "deadbug.png"];
 let spriteSheets = [];
@@ -18,8 +19,7 @@ function preload() {
   for(let i=0; i < spriteSheetFilenames.length; i++) {
     spriteSheets[i] = loadImage("assets/" + spriteSheetFilenames[i]);
   }
-
-  squished = animations.addAnimation("squish", spriteSheetFilenames[3]);
+  
 }
 
 function setup() {
@@ -35,11 +35,11 @@ function setup() {
 function reset() {
   game.elapsedTime = 0;
   game.score = 0;
-  game.totalSprites = random(20,30);
+  game.totalSprites = 50;
 
   animations = [];
   for(let i=0; i < game.totalSprites; i++) {
-    animations[i] = new WalkingAnimation(spriteSheets[Math.floor(Math.random() * 3)],32,32,random(100,300),random(100,300),5,random(0.75,2),7,random([0,1]));
+    animations[i] = new WalkingAnimation(spriteSheets[Math.floor(Math.random() * 3)],32,32,random(75,325),random(75,325),5,speed,7,random([0,1]));
   }
 }
 
@@ -53,11 +53,20 @@ function draw() {
       }
       fill(0);
       textSize(40);
-      text(game.score,20,40);
+      text(game.score,30,40);
+      push();
+      textSize(15);
+      text("Bugs Remaining:", 175, 395);
+      text(game.totalSprites, 250, 395);
+      pop();
       let currentTime = game.maxTime - game.elapsedTime;
-      text(ceil(currentTime), 300,40);
+      text(ceil(currentTime), 350,40);
       game.elapsedTime += deltaTime / 1000;
 
+      if (game.totalSprites != 40) {
+        //text("got one", 220, 200);
+      }
+      
       if (currentTime < 0)
         game.state = GameState.GameOver;
       break;
@@ -109,22 +118,15 @@ function mousePressed() {
         let contains = animations[i].contains(mouseX,mouseY);
         if (contains) {
           if (animations[i].moving != 0) {
-
-            animations[i].changeAnimation("squish");
-            //draw(spriteSheet[3], animations[i].dx, animations[i].dy);
             animations[i].stop();
-            
             game.score += 1;
+            game.totalSprites -= 1;
+            this.speed = 2;
           }
         }
       }
       break;
-    // case GameState.GameOver:
-    //   reset();
-    //   game.state = GameState.Playing;
-    //   break;
   }
-  
 }
 
 class WalkingAnimation {
