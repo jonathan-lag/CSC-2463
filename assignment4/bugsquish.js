@@ -2,7 +2,7 @@ let spriteSheet;
 
 let walkingAnimation;
 
-let spriteSheetFilenames = ["orangebug.png", "darkorangebug.png", "redbug.png"];
+let spriteSheetFilenames = ["orangebug.png", "darkorangebug.png", "redbug.png", "deadbug.png"];
 let spriteSheets = [];
 let animations = [];
 
@@ -19,7 +19,7 @@ function preload() {
     spriteSheets[i] = loadImage("assets/" + spriteSheetFilenames[i]);
   }
 
-  dead = loadImage("assets/deadbug.png");
+  squished = animations.addAnimation("squish", spriteSheetFilenames[3]);
 }
 
 function setup() {
@@ -28,6 +28,8 @@ function setup() {
   angleMode(DEGREES);
 
   reset();
+
+  
 }
 
 function reset() {
@@ -37,7 +39,7 @@ function reset() {
 
   animations = [];
   for(let i=0; i < game.totalSprites; i++) {
-    animations[i] = new WalkingAnimation(random(spriteSheets),32,32,random(100,300),random(100,300),5,random(0.75,2),7,random([0,1]));
+    animations[i] = new WalkingAnimation(spriteSheets[Math.floor(Math.random() * 3)],32,32,random(100,300),random(100,300),5,random(0.75,2),7,random([0,1]));
   }
 }
 
@@ -107,25 +109,12 @@ function mousePressed() {
         let contains = animations[i].contains(mouseX,mouseY);
         if (contains) {
           if (animations[i].moving != 0) {
-            //animations[i].remove();
-            //animations[i] = null;
+
+            animations[i].changeAnimation("squish");
+            //draw(spriteSheet[3], animations[i].dx, animations[i].dy);
             animations[i].stop();
-            if (animations[i].stop() = true) {
-                animations[i].remove();
-            }
             
             game.score += 1;
-            //animations[i].changeAnimation("deadbug");
-            //if (animations[i].spritesheet === spriteSheets[game.targetSprite])
-            //  game.score += 1;
-            //else
-            //  game.score += 1;
-          }
-          else {
-            if (animations[i].xDirection === 1)
-              animations[i].moveRight();
-            else
-              animations[i].moveLeft();
           }
         }
       }
