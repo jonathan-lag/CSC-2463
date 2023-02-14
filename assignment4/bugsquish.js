@@ -11,7 +11,7 @@ const GameState = {
   GameOver: "GameOver"
 };
 
-let game = { score: 0, maxScore: 0, maxTime: 5, elapsedTime: 0, totalSprites: 50, state: GameState.Start, speed: 1.66};
+let game = { score: 0, maxScore: 0, maxTime: 30, elapsedTime: 0, totalSprites: 50, state: GameState.Start, speed: 1.66};
 
 function preload() {
   for(let i=0; i < spriteSheetFilenames.length; i++) {
