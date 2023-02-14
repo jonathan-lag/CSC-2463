@@ -1,9 +1,7 @@
 let spriteSheet;
-
 let walkingAnimation;
-let speed = 1;
 
-let spriteSheetFilenames = ["orangebug.png", "darkorangebug.png", "redbug.png", "deadbug.png"];
+let spriteSheetFilenames = ["orangebug.png", "darkorangebug.png", "redbug.png"];
 let spriteSheets = [];
 let animations = [];
 
@@ -13,13 +11,12 @@ const GameState = {
   GameOver: "GameOver"
 };
 
-let game = { score: 0, maxScore: 0, maxTime: 10, elapsedTime: 0, totalSprites: 15, state: GameState.Start, targetSprite: 2 };
+let game = { score: 0, maxScore: 0, maxTime: 5, elapsedTime: 0, totalSprites: 50, state: GameState.Start, speed: 1.66};
 
 function preload() {
   for(let i=0; i < spriteSheetFilenames.length; i++) {
     spriteSheets[i] = loadImage("assets/" + spriteSheetFilenames[i]);
   }
-  
 }
 
 function setup() {
@@ -36,10 +33,11 @@ function reset() {
   game.elapsedTime = 0;
   game.score = 0;
   game.totalSprites = 50;
+  
 
   animations = [];
   for(let i=0; i < game.totalSprites; i++) {
-    animations[i] = new WalkingAnimation(spriteSheets[Math.floor(Math.random() * 3)],32,32,random(75,325),random(75,325),5,speed,7,random([0,1]));
+    animations[i] = new WalkingAnimation(spriteSheets[Math.floor(Math.random() * 3)],32,32,random(75,325),random(75,325),5,game.speed,4,random([0,1]));
   }
 }
 
@@ -49,8 +47,9 @@ function draw() {
       background(240);
   
       for(let i=0; i < animations.length; i++) {
-        animations[i].draw();
+        animations[i].draw(); 
       }
+      
       fill(0);
       textSize(40);
       text(game.score,30,40);
@@ -62,10 +61,6 @@ function draw() {
       let currentTime = game.maxTime - game.elapsedTime;
       text(ceil(currentTime), 350,40);
       game.elapsedTime += deltaTime / 1000;
-
-      if (game.totalSprites != 40) {
-        //text("got one", 220, 200);
-      }
       
       if (currentTime < 0)
         game.state = GameState.GameOver;
@@ -77,12 +72,15 @@ function draw() {
       fill(255);
       textSize(40);
       textAlign(CENTER);
-      text("Game Over!",200,150);
+      push();
+      fill(255, 0, 0);
+      text("Game Over!",200,100);
+      pop();
       textSize(35);
-      text("Score: " + game.score,200,220);
-      text("Max Score: " + game.maxScore,200,270);
+      text("Score: " + game.score,200,150);
+      text("Max Score: " + game.maxScore,200,200);
       textSize(25);
-      text("Press Any Key to Play Again", 200, 330);
+      text("Press Any Key to Play Again", 200, 350);
       break;
     case GameState.Start:
       background(0);
@@ -121,7 +119,7 @@ function mousePressed() {
             animations[i].stop();
             game.score += 1;
             game.totalSprites -= 1;
-            this.speed = 2;
+            
           }
         }
       }
@@ -230,7 +228,7 @@ class WalkingAnimation {
 
   stop() {
     this.moving = 0;
-    this.u = 7;
-    this.v = 8;
+    this.u = 5;
+    this.v = 0;
   }
 }
