@@ -3,13 +3,20 @@ let sounds = new Tone.Players({
   "arrow": "sounds/arrow2.wav",
   "baby": "sounds/baby_x.wav",
   "boing": "sounds/boing_poing.wav",
-  "drip": "sounds/water.mp3"
+  "drip": "sounds/water.mp3",
+  "money": "sounds/cash_register_x.wav",
+  "tape": "sounds/ductTape.wav",
+  "chicken": "sounds/chicken.wav",
+  "charge": "sounds/charge.wav",
+  "whopper": "sounds/whopper-ad.mp3",
+  "sad sponge": "sounds/spongebob-fail.mp3"
 
 })
 
 const delay = new Tone.FeedbackDelay("8n", 0.5);
 
-let soundNames = ["arrow", "baby", "boing", "drip"];
+let soundNames = ["arrow", "baby", "boing", "drip", "money"];
+let soundNames2 = ["tape", "chicken", "charge", "whopper", "sad sponge"];
 let buttons = [];
 
 let dSlider;
@@ -22,7 +29,13 @@ function setup() {
 
   soundNames.forEach((word, index) => {
     buttons[index] = createButton(word);
-    buttons[index].position(index*150, index + 50);
+    buttons[index].position(index*100 + 10, index + 40);
+    buttons[index].mousePressed( () => buttonSound(word))
+  })
+
+  soundNames2.forEach((word, index) => {
+    buttons[index] = createButton(word);
+    buttons[index].position(index*95 + 10, index + 85);
     buttons[index].mousePressed( () => buttonSound(word))
   })
 
