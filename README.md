@@ -19,3 +19,5 @@ https://jonathan-lag.github.io/CSC-2463/bugsquish.html
 
 Assignment 5:  
 https://jonathan-lag.github.io/CSC-2463/assignment5/index.html   
+
+Assignment 6:  
