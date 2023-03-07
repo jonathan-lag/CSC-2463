@@ -22,3 +22,6 @@ https://jonathan-lag.github.io/CSC-2463/assignment5/index.html
 
 Assignment 6:  
 https://jonathan-lag.github.io/CSC-2463/assignment6/index.html  
+
+Assignment 7:  
+https://jonathan-lag.github.io/CS-2463/assignment7/index.html
